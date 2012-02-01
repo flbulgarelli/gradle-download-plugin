@@ -1,0 +1,13 @@
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath group: 'com.zauberlabs.gradle.plugins', name: 'download-plugin', version: '1.0-SNAPSHOT'
+    }
+}
+
+task download(type: com.zauberlabs.gradle.plugins.download.DownloadTask) {
+    url = "http://www.google.com"
+    filename = "index.html"
+}
