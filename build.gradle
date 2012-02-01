@@ -1,6 +1,17 @@
 apply plugin: 'groovy'
+apply plugin: 'maven'
+
+group = 'com.zauberlabs.gradle.plugins'
+version = '1.0-SNAPSHOT'
 
 dependencies {
     compile gradleApi()
     groovy localGroovy()
 }
+
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
