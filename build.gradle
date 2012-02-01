@@ -1,0 +1,30 @@
+class DownloadPlugin implements Plugin<Project> {
+    def void apply(Project project) {
+        project.tasks.withType(DownloadTask) { task ->
+            task.conventionMapping.filename = { project.filename }
+            task.conventionMapping.url = { project.url }
+        }
+    }
+}
+
+class DownloadTask extends DefaultTask {
+
+    String url
+    String filename
+
+    @TaskAction
+    def download() {
+        new File(filename).withOutputStream {
+          it << new URL(url).openStream()
+        } 
+    }
+}
+
+
+apply plugin: DownloadPlugin
+
+task downloadGoogle(type: DownloadTask) {
+    url = "http://www.google.com"
+    filename = "gooogle.html"
+}
+
